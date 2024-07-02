@@ -1,0 +1,52 @@
+[
+    {
+        "Id": 1,
+        "Name": "Abi",
+        "Department": "CS"
+    },
+    {
+        "Id": 2,
+        "Name": "Akilan",
+        "Department": "IT"
+    },
+    {
+        "Id": 3,
+        "Name": "Aravind",
+        "Department": "BCA"
+    },
+    {
+        "Id": 4,
+        "Name": "Bala",
+        "Department": "IT"
+    },
+    {
+        "Id": 5,
+        "Name": "Dhinesh",
+        "Department": "CS"
+    },
+    {
+        "Id": 6,
+        "Name": "Durai",
+        "Department": "BCA"
+    },
+    {
+        "Id": 7,
+        "Name": "Kishor",
+        "Department": "CS"
+    },
+    {
+        "Id": 8,
+        "Name": "Mugesh",
+        "Department": "CS"
+    },
+    {
+        "Id": 9,
+        "Name": "Siva",
+        "Department": "BCA"
+    },
+    {
+        "Id": 10,
+        "Name": "Noor",
+        "Department": "IT"
+    }
+]

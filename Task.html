@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task 1</title>
+<style >
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      cursor: pointer;
+    }
+    button{
+        padding: 8px;
+        width: 40px;
+    }
+   
+    .pagination{
+        display: flex;
+        justify-content: center;
+    }
+    .pagination button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+.slider-container {
+    position: relative;
+    width: 70%;
+    overflow: hidden;
+  left: 15%;
+  margin-top:10px;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+</style>
+</head>
+<body>
+<table id="student">
+    <thead >
+    <tr>
+        <th onclick="sortTable(0)">Id</th>
+        <th onclick="sortTable(1)">Name</th>
+        <th onclick="sortTable(2)">Department</th>
+    </tr>
+</thead>
+<tbody>
+
+</tbody>
+  
+</table>
+<div class="pagination" id="pagination">
+
+</div>
+
+<div class="slider-container">
+    <div class="slider">
+
+        <div class="slide">
+            <img src="images/slide1.jpg" alt="Slide 1">
+        </div>
+        <div class="slide">
+            <img src="images/slide2.jpg" alt="Slide 2">
+        </div>
+        <div class="slide">
+            <img src="images/slide3.jpg" alt="Slide 3">
+        </div>
+        <div class="slide">
+            <img src="images/slide4.jpg" alt="Slide 4">
+        </div>
+        <div class="slide">
+            <img src="images/slide5.jpg" alt="Slide 5">
+        </div>
+
+    </div>
+
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+
+</div>
+
+</body>
+</html>
+<script >
+    let studentDetails = [{
+        Id:1,
+        Name:"Abi",
+        Department:"CS"
+    },{
+        Id:2,
+        Name:"Akilan",
+        Department:"IT"
+    },
+    {
+        Id:3,
+        Name:"Aravind",
+        Department:"BCA"
+    },
+    {
+        Id:4,
+        Name:"Bala",
+        Department:"IT"
+    },
+    {
+        Id:5,
+        Name:"Dhinesh",
+        Department:"CS"
+    },
+    {
+        Id:6,
+        Name:"Durai",
+        Department:"BCA"
+    },
+    {
+        Id:7,
+        Name:"Kishor",
+        Department:"CS"
+    },
+    {
+        Id:8,
+        Name:"Mugesh",
+        Department:"CS"
+    },
+    {
+        Id:9,
+        Name:"Siva",
+        Department:"BCA"
+    },
+    {
+        Id:10,
+        Name:"Noor",
+        Department:"IT"
+    },
+
+
+    ];
+    const rowpage = 2;
+    let currentpage = 1 ;
+    function pageRender(){
+        let tableBody = document.querySelector('#student tbody');
+        tableBody.innerHTML="";
+    const start = (currentpage -1) * rowpage;
+    const end = currentpage * rowpage;
+  
+    const currentpageData =studentDetails.slice(start,end);
+    
+    
+    
+    currentpageData.forEach(item => {
+     const tableRow = document.createElement("tr");
+     for (const [key, data] of Object.entries(item)) {
+
+        
+
+        const tableData = document.createElement("td");
+        tableData.textContent=data;
+        tableRow.appendChild(tableData);
+
+      
+       }
+       tableBody.appendChild(tableRow);
+    
+      
+    
+
+    });
+    pagination();
+}
+
+function pagination(){
+    const pageButton = document.getElementById('pagination');
+    pageButton.innerHTML="";
+    const totalpage =Math.ceil( studentDetails.length / rowpage) ;
+   
+for(let i=1;i<=totalpage;i++){
+  const paginationButton = document.createElement("button");
+  paginationButton.textContent = i;
+  paginationButton.onclick=()=>{
+    
+     currentpage = i ;
+   
+    pageRender();
+  }
+  
+  pageButton.appendChild(paginationButton);
+}
+}
+pageRender();
+
+
+let sortDirection ={}
+function sortTable(columnIndex) { 
+        const keys = ['Id', 'Name', 'Department']; 
+        const key = keys[columnIndex]; 
+        console.log(key);
+    
+        if (sortDirection[key] === undefined) { 
+            sortDirection[key] = true; 
+        } else { 
+            sortDirection[key] = !sortDirection[key]; 
+        } 
+      
+        studentDetails.sort((a, b) => { 
+         
+          
+            if (a[key] < b[key]) { 
+                return sortDirection[key] ? -1 : 1; 
+            } 
+            if (a[key] > b[key]) { 
+                return sortDirection[key] ? 1 : -1; 
+            } 
+            return 0; 
+        }); 
+        currentpage = 1; 
+        pageRender(); 
+    }
+
+
+
+    let slideIndex = 1;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+
+function moveSlide(n) {
+    slideIndex += n;
+    showSlides();
+    
+}
+
+function showSlides() {
+    
+    if (slideIndex > totalSlides) {
+        
+        slideIndex = 1;
+        
+    }
+    if (slideIndex < 1) {
+        slideIndex = totalSlides;
+    }
+
+    const offset = -(slideIndex - 1) * 100; 
+    document.querySelector('.slider').style.transform = `translateX(${offset}%)`;
+}
+
+</script>
