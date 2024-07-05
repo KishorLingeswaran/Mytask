@@ -1,0 +1,12 @@
+[
+    {"id": 1, "studentname": "Abi", "Department": "CS"},
+    {"id": 2, "studentname": "Akilan", "Department": "IT"},
+    {"id": 3, "studentname": "Aravind", "Department": "BCA"},
+    {"id": 4, "studentname": "Bala", "Department": "IT"},
+    {"id": 5, "studentname": "Dhinesh", "Department": "CS"},
+    {"id": 6, "studentname": "Durai", "Department": "BCA"},
+    {"id": 7, "studentname": "Kishor", "Department": "CS"},
+    {"id": 8, "studentname": "Mugesh", "Department": "CS"},
+    {"id": 9, "studentname": "Siva", "Department": "BCA"},
+    {"id": 10, "studentname": "Noor", "Department": "IT"}
+]
