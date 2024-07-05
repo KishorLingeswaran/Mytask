@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Student List with Pagination and Sorting</title>
+    <title>Task 2</title>
     <style>
         table {
             width: 100%;
@@ -21,7 +21,7 @@
         }
     </style>
    <script>
- function navigateToPage(page) {
+ function gotopage(page) {
             let currentSort = '<?php echo isset($_GET['sort_by']) ? $_GET['sort_by'] : ''; ?>';
             let sortDir = '<?php echo isset($_GET['sort_dir']) ? $_GET['sort_dir'] : 'asc'; ?>';
             let url = `?page=${page}`;
@@ -72,7 +72,7 @@
 
 <div class="pagination">
     <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-        <button onclick="navigateToPage(<?php echo $i; ?>)"><?php echo $i; ?></button>
+        <button onclick="gotopage(<?php echo $i; ?>)"><?php echo $i; ?></button>
     <?php endfor; ?>
 </div>
 
